@@ -1,0 +1,2 @@
+# SpringCloudConfig
+SpringCloud工程的远程配置文件仓库
