@@ -1,0 +1,6 @@
+server:
+  port: 9022
+
+spring:
+  application:
+    name: @pom.artifactId@
