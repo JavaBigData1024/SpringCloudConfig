@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: spring-cloud-gateway-update2
+    name: spring-cloud-gateway-update
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf8
