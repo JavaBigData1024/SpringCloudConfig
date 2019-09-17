@@ -3,4 +3,4 @@ server:
 
 spring:
   application:
-    name: @pom.artifactId@
+    name: spring-cloud-gateway-test
