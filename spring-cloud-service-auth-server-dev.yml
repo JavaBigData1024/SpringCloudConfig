@@ -5,7 +5,7 @@ spring:
   application:
     name: spring-cloud-service-auth-server
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sso?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
     password: root
