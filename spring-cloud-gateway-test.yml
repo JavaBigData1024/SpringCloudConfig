@@ -1,6 +1,87 @@
 server:
-  port: 9022
+  port: 9021
 
 spring:
   application:
-    name: spring-cloud-gateway-test
+    name: spring-cloud-gateway
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    timeout: 3000ms
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1ms
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 30000
+
+zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+
+  sensitive-headers: Cookie, Set-Cookie
+
+  prefix: /api
+  routes:
+    spring-cloud-service-auth-server:
+      path: /service/auth/**
+      service-id: spring-cloud-service-auth-server
+    spring-cloud-service-user:
+      path: /service/user/**
+      service-id: spring-cloud-service-user
+    spring-cloud-service-goods:
+      path: /service/goods/**
+      service-id: spring-cloud-service-goods
+    spring-cloud-service-order:
+      path: /service/order/**
+      service-id: spring-cloud-service-order
+
+  ratelimit:
+    enabled: true
+    repository: REDIS
+    behind-proxy: true
+    default-policy-list:
+      - limit: 100
+        quota: 20
+        refresh-interval: 60
+        type:
+          - url
+    policy-list:
+      spring-cloud-service-user:
+        - limit: 100
+          quota: 20
+          refresh-interval: 60
+          type:
+            - url
+      spring-cloud-service-auth-server:
+        - limit: 100
+          quota: 20
+          refresh-interval: 60
+        - limit: 20
+          quota: 20
+          refresh-interval: 60
+          type:
+            - origin
+
+
+#  security:
+#    user:
+#      name: root
+#      password: root
