@@ -1,9 +1,9 @@
 server:
-  port: 9023
+  port: 9020
 
 spring:
   application:
-    name: spring-cloud-gateway-update
+    name: spring-cloud-gateway
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf8
